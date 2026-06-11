@@ -380,8 +380,8 @@
     {
       "id": "csvAgent_0",
       "position": {
-        "x": 3325.9102145728743,
-        "y": -1507.2687971337832
+        "x": 2474.5409369906174,
+        "y": -1691.641761705737
       },
       "type": "customNode",
       "data": {
@@ -470,8 +470,8 @@
       "height": 470,
       "selected": false,
       "positionAbsolute": {
-        "x": 3325.9102145728743,
-        "y": -1507.2687971337832
+        "x": 2474.5409369906174,
+        "y": -1691.641761705737
       },
       "dragging": false
     },
@@ -576,7 +576,7 @@
         "inputs": {
           "tools": [
             "{{retrieverTool_0.data.instance}}",
-            "{{chainTool_0.data.instance}}"
+            "{{postgreSQLMCP_0.data.instance}}"
           ],
           "memory": "{{bufferMemory_0.data.instance}}",
           "model": "{{chatAnthropic_0.data.instance}}",
@@ -712,8 +712,8 @@
     {
       "id": "chainTool_0",
       "position": {
-        "x": 414.3670923916121,
-        "y": -734.6791131514376
+        "x": 1294.9449528455386,
+        "y": -2166.9010651864587
       },
       "type": "customNode",
       "data": {
@@ -789,16 +789,16 @@
       "height": 609,
       "selected": false,
       "positionAbsolute": {
-        "x": 414.3670923916121,
-        "y": -734.6791131514376
+        "x": 1294.9449528455386,
+        "y": -2166.9010651864587
       },
       "dragging": false
     },
     {
       "id": "sqlDatabaseChain_0",
       "position": {
-        "x": -18.738705874811586,
-        "y": -1235.3774836581167
+        "x": 1986.8161423229442,
+        "y": -2167.9840046154186
       },
       "type": "customNode",
       "data": {
@@ -927,7 +927,7 @@
           }
         ],
         "inputs": {
-          "model": "{{chatAnthropic_0.data.instance}}",
+          "model": "",
           "database": "postgres",
           "url": "postgresql://neondb_owner:npg_VljxemEq51pY@ep-withered-tooth-a27x5w00-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
           "includesTables": "suppliers",
@@ -953,8 +953,72 @@
       "height": 553,
       "selected": false,
       "positionAbsolute": {
-        "x": -18.738705874811586,
-        "y": -1235.3774836581167
+        "x": 1986.8161423229442,
+        "y": -2167.9840046154186
+      },
+      "dragging": false
+    },
+    {
+      "id": "postgreSQLMCP_0",
+      "position": {
+        "x": -0.42794827824337744,
+        "y": -563.8485239996903
+      },
+      "type": "customNode",
+      "data": {
+        "id": "postgreSQLMCP_0",
+        "label": "PostgreSQL MCP",
+        "version": 1,
+        "name": "postgreSQLMCP",
+        "type": "PostgreSQL MCP Tool",
+        "baseClasses": [
+          "Tool"
+        ],
+        "category": "Tools (MCP)",
+        "description": "MCP server that provides read-only access to PostgreSQL databases",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "credentialNames": [
+              "PostgresUrl"
+            ],
+            "id": "postgreSQLMCP_0-input-credential-credential",
+            "display": true
+          },
+          {
+            "label": "Available Actions",
+            "name": "mcpActions",
+            "type": "asyncMultiOptions",
+            "loadMethod": "listActions",
+            "refresh": true,
+            "id": "postgreSQLMCP_0-input-mcpActions-asyncMultiOptions",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "mcpActions": "[\"query\"]"
+        },
+        "outputAnchors": [
+          {
+            "id": "postgreSQLMCP_0-output-postgreSQLMCP-Tool",
+            "name": "postgreSQLMCP",
+            "label": "PostgreSQL MCP Tool",
+            "description": "MCP server that provides read-only access to PostgreSQL databases",
+            "type": "Tool"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 381,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -0.42794827824337744,
+        "y": -563.8485239996903
       },
       "dragging": false
     }
@@ -993,28 +1057,20 @@
       "id": "retrieverTool_0-retrieverTool_0-output-retrieverTool-RetrieverTool|DynamicTool|Tool|StructuredTool|Runnable-toolAgent_0-toolAgent_0-input-tools-Tool"
     },
     {
-      "source": "chainTool_0",
-      "sourceHandle": "chainTool_0-output-chainTool-ChainTool|DynamicTool|Tool|StructuredTool|Runnable",
-      "target": "toolAgent_0",
-      "targetHandle": "toolAgent_0-input-tools-Tool",
-      "type": "buttonedge",
-      "id": "chainTool_0-chainTool_0-output-chainTool-ChainTool|DynamicTool|Tool|StructuredTool|Runnable-toolAgent_0-toolAgent_0-input-tools-Tool"
-    },
-    {
-      "source": "chatAnthropic_0",
-      "sourceHandle": "chatAnthropic_0-output-chatAnthropic-ChatAnthropic|ChatAnthropicMessages|BaseChatModel|BaseLanguageModel|Runnable",
-      "target": "sqlDatabaseChain_0",
-      "targetHandle": "sqlDatabaseChain_0-input-model-BaseLanguageModel",
-      "type": "buttonedge",
-      "id": "chatAnthropic_0-chatAnthropic_0-output-chatAnthropic-ChatAnthropic|ChatAnthropicMessages|BaseChatModel|BaseLanguageModel|Runnable-sqlDatabaseChain_0-sqlDatabaseChain_0-input-model-BaseLanguageModel"
-    },
-    {
       "source": "sqlDatabaseChain_0",
       "sourceHandle": "sqlDatabaseChain_0-output-sqlDatabaseChain-SqlDatabaseChain|BaseChain|Runnable",
       "target": "chainTool_0",
       "targetHandle": "chainTool_0-input-baseChain-BaseChain",
       "type": "buttonedge",
       "id": "sqlDatabaseChain_0-sqlDatabaseChain_0-output-sqlDatabaseChain-SqlDatabaseChain|BaseChain|Runnable-chainTool_0-chainTool_0-input-baseChain-BaseChain"
+    },
+    {
+      "source": "postgreSQLMCP_0",
+      "sourceHandle": "postgreSQLMCP_0-output-postgreSQLMCP-Tool",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "postgreSQLMCP_0-postgreSQLMCP_0-output-postgreSQLMCP-Tool-toolAgent_0-toolAgent_0-input-tools-Tool"
     }
   ]
 }
