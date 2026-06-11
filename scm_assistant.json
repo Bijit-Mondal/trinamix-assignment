@@ -1,0 +1,1020 @@
+{
+  "nodes": [
+    {
+      "id": "chatAnthropic_0",
+      "position": {
+        "x": -430.30553882818504,
+        "y": 192.8747569753537
+      },
+      "type": "customNode",
+      "data": {
+        "id": "chatAnthropic_0",
+        "label": "Anthropic Claude",
+        "version": 8,
+        "name": "chatAnthropic",
+        "type": "ChatAnthropic",
+        "baseClasses": [
+          "ChatAnthropic",
+          "ChatAnthropicMessages",
+          "BaseChatModel",
+          "BaseLanguageModel",
+          "Runnable"
+        ],
+        "category": "Chat Models",
+        "description": "Wrapper around ChatAnthropic large language models that use the Chat endpoint",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "credentialNames": [
+              "anthropicApi"
+            ],
+            "id": "chatAnthropic_0-input-credential-credential",
+            "display": true
+          },
+          {
+            "label": "Model Name",
+            "name": "modelName",
+            "type": "asyncOptions",
+            "loadMethod": "listModels",
+            "default": "claude-haiku-4-5",
+            "id": "chatAnthropic_0-input-modelName-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Temperature",
+            "name": "temperature",
+            "type": "number",
+            "step": 0.1,
+            "default": 0.9,
+            "optional": true,
+            "id": "chatAnthropic_0-input-temperature-number",
+            "display": true
+          },
+          {
+            "label": "Streaming",
+            "name": "streaming",
+            "type": "boolean",
+            "default": true,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatAnthropic_0-input-streaming-boolean",
+            "display": true
+          },
+          {
+            "label": "Allow Image Uploads",
+            "name": "allowImageUploads",
+            "type": "boolean",
+            "description": "Allow image input. Refer to the <a href=\"https://docs.flowiseai.com/using-flowise/uploads#image\" target=\"_blank\">docs</a> for more details.",
+            "default": false,
+            "optional": true,
+            "id": "chatAnthropic_0-input-allowImageUploads-boolean",
+            "display": true
+          },
+          {
+            "label": "Extended Thinking",
+            "name": "extendedThinking",
+            "type": "boolean",
+            "description": "Enable extended thinking for reasoning model such as Claude Sonnet 3.7 and Claude 4",
+            "optional": true,
+            "additionalParams": true,
+            "hide": {
+              "modelName": [
+                "claude-opus-4-6",
+                "claude-sonnet-4-6"
+              ]
+            },
+            "id": "chatAnthropic_0-input-extendedThinking-boolean",
+            "display": false
+          },
+          {
+            "label": "Budget Tokens",
+            "name": "budgetTokens",
+            "type": "number",
+            "step": 1,
+            "default": "1024",
+            "description": "Maximum number of tokens Claude is allowed use for its internal reasoning process",
+            "optional": true,
+            "additionalParams": true,
+            "show": {
+              "extendedThinking": true
+            },
+            "hide": {
+              "modelName": [
+                "claude-opus-4-6",
+                "claude-sonnet-4-6"
+              ]
+            },
+            "id": "chatAnthropic_0-input-budgetTokens-number",
+            "display": false
+          },
+          {
+            "label": "Adaptive Thinking",
+            "description": "Claude evaluates the complexity of each request and determines whether and how much to use extended thinking.",
+            "name": "adaptiveThinking",
+            "type": "boolean",
+            "default": false,
+            "optional": true,
+            "additionalParams": true,
+            "show": {
+              "modelName": [
+                "claude-opus-4-6",
+                "claude-sonnet-4-6"
+              ]
+            },
+            "id": "chatAnthropic_0-input-adaptiveThinking-boolean",
+            "display": true
+          },
+          {
+            "label": "Thinking Effort",
+            "description": "Control how eager Claude is about spending tokens when responding to requests",
+            "name": "thinkingEffort",
+            "type": "options",
+            "optional": true,
+            "options": [
+              {
+                "label": "Low",
+                "name": "low"
+              },
+              {
+                "label": "Medium",
+                "name": "medium"
+              },
+              {
+                "label": "High",
+                "name": "high"
+              },
+              {
+                "label": "Max",
+                "name": "max",
+                "description": "Absolute maximum capability with no constraints on token spending. Opus 4.6 only"
+              }
+            ],
+            "additionalParams": true,
+            "show": {
+              "adaptiveThinking": true,
+              "modelName": [
+                "claude-opus-4-6",
+                "claude-sonnet-4-6"
+              ]
+            },
+            "id": "chatAnthropic_0-input-thinkingEffort-options",
+            "display": false
+          },
+          {
+            "label": "Max Tokens",
+            "name": "maxTokensToSample",
+            "type": "number",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatAnthropic_0-input-maxTokensToSample-number",
+            "display": true
+          },
+          {
+            "label": "Top P",
+            "name": "topP",
+            "type": "number",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatAnthropic_0-input-topP-number",
+            "display": true
+          },
+          {
+            "label": "Top K",
+            "name": "topK",
+            "type": "number",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatAnthropic_0-input-topK-number",
+            "display": true
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Cache",
+            "name": "cache",
+            "type": "BaseCache",
+            "optional": true,
+            "id": "chatAnthropic_0-input-cache-BaseCache",
+            "display": true
+          }
+        ],
+        "inputs": {
+          "cache": "",
+          "modelName": "claude-sonnet-4-6",
+          "temperature": "0.1",
+          "streaming": true,
+          "allowImageUploads": "",
+          "extendedThinking": "",
+          "budgetTokens": "1024",
+          "adaptiveThinking": "",
+          "thinkingEffort": "",
+          "maxTokensToSample": "",
+          "topP": "",
+          "topK": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "chatAnthropic_0-output-chatAnthropic-ChatAnthropic|ChatAnthropicMessages|BaseChatModel|BaseLanguageModel|Runnable",
+            "name": "chatAnthropic",
+            "label": "ChatAnthropic",
+            "description": "Wrapper around ChatAnthropic large language models that use the Chat endpoint",
+            "type": "ChatAnthropic | ChatAnthropicMessages | BaseChatModel | BaseLanguageModel | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 676,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": -430.30553882818504,
+        "y": 192.8747569753537
+      }
+    },
+    {
+      "id": "bufferMemory_0",
+      "position": {
+        "x": -520.2928969372663,
+        "y": -173.35972520536424
+      },
+      "type": "customNode",
+      "data": {
+        "id": "bufferMemory_0",
+        "label": "Buffer Memory",
+        "version": 2,
+        "name": "bufferMemory",
+        "type": "BufferMemory",
+        "baseClasses": [
+          "BufferMemory",
+          "BaseChatMemory",
+          "BaseMemory"
+        ],
+        "category": "Memory",
+        "description": "Retrieve chat messages stored in database",
+        "inputParams": [
+          {
+            "label": "Session Id",
+            "name": "sessionId",
+            "type": "string",
+            "description": "If not specified, a random id will be used. Learn <a target=\"_blank\" href=\"https://docs.flowiseai.com/memory#ui-and-embedded-chat\">more</a>",
+            "default": "",
+            "additionalParams": true,
+            "optional": true,
+            "id": "bufferMemory_0-input-sessionId-string",
+            "display": true
+          },
+          {
+            "label": "Memory Key",
+            "name": "memoryKey",
+            "type": "string",
+            "default": "chat_history",
+            "additionalParams": true,
+            "id": "bufferMemory_0-input-memoryKey-string",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "sessionId": "",
+          "memoryKey": "chat_history"
+        },
+        "outputAnchors": [
+          {
+            "id": "bufferMemory_0-output-bufferMemory-BufferMemory|BaseChatMemory|BaseMemory",
+            "name": "bufferMemory",
+            "label": "BufferMemory",
+            "description": "Retrieve chat messages stored in database",
+            "type": "BufferMemory | BaseChatMemory | BaseMemory"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 259,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -520.2928969372663,
+        "y": -173.35972520536424
+      },
+      "dragging": false
+    },
+    {
+      "id": "documentStoreVS_0",
+      "position": {
+        "x": 554.3842560920415,
+        "y": -1138.4968761541954
+      },
+      "type": "customNode",
+      "data": {
+        "id": "documentStoreVS_0",
+        "label": "Document Store (Vector)",
+        "version": 1,
+        "name": "documentStoreVS",
+        "type": "DocumentStoreVS",
+        "baseClasses": [
+          "DocumentStoreVS"
+        ],
+        "category": "Vector Stores",
+        "description": "Search and retrieve documents from Document Store",
+        "inputParams": [
+          {
+            "label": "Select Store",
+            "name": "selectedStore",
+            "type": "asyncOptions",
+            "loadMethod": "listStores",
+            "id": "documentStoreVS_0-input-selectedStore-asyncOptions",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "selectedStore": "3727ab4b-0ad8-4694-8410-9c373552fbe6"
+        },
+        "outputAnchors": [
+          {
+            "name": "output",
+            "label": "Output",
+            "type": "options",
+            "description": "",
+            "options": [
+              {
+                "id": "documentStoreVS_0-output-retriever-BaseRetriever",
+                "name": "retriever",
+                "label": "Retriever",
+                "description": "",
+                "type": "BaseRetriever"
+              },
+              {
+                "id": "documentStoreVS_0-output-vectorStore-VectorStore",
+                "name": "vectorStore",
+                "label": "Vector Store",
+                "description": "",
+                "type": "VectorStore"
+              }
+            ],
+            "default": "retriever"
+          }
+        ],
+        "outputs": {
+          "output": "retriever"
+        },
+        "selected": false
+      },
+      "width": 300,
+      "height": 318,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 554.3842560920415,
+        "y": -1138.4968761541954
+      },
+      "dragging": false
+    },
+    {
+      "id": "csvAgent_0",
+      "position": {
+        "x": 3325.9102145728743,
+        "y": -1507.2687971337832
+      },
+      "type": "customNode",
+      "data": {
+        "id": "csvAgent_0",
+        "label": "CSV Agent",
+        "version": 3,
+        "name": "csvAgent",
+        "type": "AgentExecutor",
+        "baseClasses": [
+          "AgentExecutor",
+          "BaseChain",
+          "Runnable"
+        ],
+        "category": "Agents",
+        "description": "Agent used to answer queries on CSV data",
+        "inputParams": [
+          {
+            "label": "Csv File",
+            "name": "csvFile",
+            "type": "file",
+            "fileType": ".csv",
+            "id": "csvAgent_0-input-csvFile-file",
+            "display": true
+          },
+          {
+            "label": "System Message",
+            "name": "systemMessagePrompt",
+            "type": "string",
+            "rows": 4,
+            "additionalParams": true,
+            "optional": true,
+            "placeholder": "I want you to act as a document that I am having a conversation with. Your name is \"AI Assistant\". You will provide me with answers from the given info. If the answer is not included, say exactly \"Hmm, I am not sure.\" and stop after that. Refuse to answer any question not about the info. Never break character.",
+            "id": "csvAgent_0-input-systemMessagePrompt-string",
+            "display": true
+          },
+          {
+            "label": "Custom Pandas Read_CSV Code",
+            "description": "Custom Pandas <a target=\"_blank\" href=\"https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html\">read_csv</a> function. Takes in an input: \"csv_data\"",
+            "name": "customReadCSV",
+            "default": "read_csv(csv_data)",
+            "type": "code",
+            "optional": true,
+            "additionalParams": true,
+            "id": "csvAgent_0-input-customReadCSV-code",
+            "display": true
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Language Model",
+            "name": "model",
+            "type": "BaseLanguageModel",
+            "id": "csvAgent_0-input-model-BaseLanguageModel",
+            "display": true
+          },
+          {
+            "label": "Input Moderation",
+            "description": "Detect text that could generate harmful output and prevent it from being sent to the language model",
+            "name": "inputModeration",
+            "type": "Moderation",
+            "optional": true,
+            "list": true,
+            "id": "csvAgent_0-input-inputModeration-Moderation",
+            "display": true
+          }
+        ],
+        "inputs": {
+          "model": "",
+          "systemMessagePrompt": "You are a supply chain data analyst. You have access to supplier performance data with 2000 purchase orders across 116 suppliers.\n\nWhen counting or filtering suppliers, ALWAYS scan ALL rows before giving a final answer. Never estimate.\n\nKey columns available:\n- Supplier_Name, Supplier_ID, Tier (Tier-1/Tier-2/Tier-3)\n- OTD_Rate_Pct, Defect_Rate, Compliance_Score, Sustainability_Score\n- Risk_Level (Low/Medium/High)\n- Active_Disruptions (None or disruption type)\n- Region (APAC/EMEA/LATAM/NA)\n- PO_Value, Product_Category",
+          "inputModeration": "",
+          "customReadCSV": "read_csv(csv_data, dtype={\n    'Contract_Tier': str,\n    'Risk_Level': str,\n    'Active_Disruptions': str,\n    'Region': str,\n    'Supplier_Name': str,\n    'Supplier_ID': str,\n    'PO_ID': str,\n    'Country': str,\n    'Product_Category': str\n})"
+        },
+        "outputAnchors": [
+          {
+            "id": "csvAgent_0-output-csvAgent-AgentExecutor|BaseChain|Runnable",
+            "name": "csvAgent",
+            "label": "AgentExecutor",
+            "description": "Agent used to answer queries on CSV data",
+            "type": "AgentExecutor | BaseChain | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 470,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 3325.9102145728743,
+        "y": -1507.2687971337832
+      },
+      "dragging": false
+    },
+    {
+      "id": "toolAgent_0",
+      "position": {
+        "x": 1601.454498004763,
+        "y": -141.19688580259697
+      },
+      "type": "customNode",
+      "data": {
+        "id": "toolAgent_0",
+        "label": "Tool Agent",
+        "version": 2,
+        "name": "toolAgent",
+        "type": "AgentExecutor",
+        "baseClasses": [
+          "AgentExecutor",
+          "BaseChain",
+          "Runnable"
+        ],
+        "category": "Agents",
+        "description": "Agent that uses Function Calling to pick the tools and args to call",
+        "inputParams": [
+          {
+            "label": "System Message",
+            "name": "systemMessage",
+            "type": "string",
+            "default": "You are a helpful AI assistant.",
+            "description": "If Chat Prompt Template is provided, this will be ignored",
+            "rows": 4,
+            "optional": true,
+            "additionalParams": true,
+            "id": "toolAgent_0-input-systemMessage-string",
+            "display": true
+          },
+          {
+            "label": "Max Iterations",
+            "name": "maxIterations",
+            "type": "number",
+            "optional": true,
+            "additionalParams": true,
+            "id": "toolAgent_0-input-maxIterations-number",
+            "display": true
+          },
+          {
+            "label": "Enable Detailed Streaming",
+            "name": "enableDetailedStreaming",
+            "type": "boolean",
+            "default": false,
+            "description": "Stream detailed intermediate steps during agent execution",
+            "optional": true,
+            "additionalParams": true,
+            "id": "toolAgent_0-input-enableDetailedStreaming-boolean",
+            "display": true
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Tools",
+            "name": "tools",
+            "type": "Tool",
+            "list": true,
+            "id": "toolAgent_0-input-tools-Tool",
+            "display": true
+          },
+          {
+            "label": "Memory",
+            "name": "memory",
+            "type": "BaseChatMemory",
+            "id": "toolAgent_0-input-memory-BaseChatMemory",
+            "display": true
+          },
+          {
+            "label": "Tool Calling Chat Model",
+            "name": "model",
+            "type": "BaseChatModel",
+            "description": "Only compatible with models that are capable of function calling: ChatOpenAI, ChatMistral, ChatAnthropic, ChatGoogleGenerativeAI, ChatVertexAI, GroqChat",
+            "id": "toolAgent_0-input-model-BaseChatModel",
+            "display": true
+          },
+          {
+            "label": "Chat Prompt Template",
+            "name": "chatPromptTemplate",
+            "type": "ChatPromptTemplate",
+            "description": "Override existing prompt with Chat Prompt Template. Human Message must includes {input} variable",
+            "optional": true,
+            "id": "toolAgent_0-input-chatPromptTemplate-ChatPromptTemplate",
+            "display": true
+          },
+          {
+            "label": "Input Moderation",
+            "description": "Detect text that could generate harmful output and prevent it from being sent to the language model",
+            "name": "inputModeration",
+            "type": "Moderation",
+            "optional": true,
+            "list": true,
+            "id": "toolAgent_0-input-inputModeration-Moderation",
+            "display": true
+          }
+        ],
+        "inputs": {
+          "tools": [
+            "{{retrieverTool_0.data.instance}}",
+            "{{chainTool_0.data.instance}}"
+          ],
+          "memory": "{{bufferMemory_0.data.instance}}",
+          "model": "{{chatAnthropic_0.data.instance}}",
+          "chatPromptTemplate": "",
+          "systemMessage": "You are a helpful AI assistant.",
+          "inputModeration": "",
+          "maxIterations": "",
+          "enableDetailedStreaming": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "toolAgent_0-output-toolAgent-AgentExecutor|BaseChain|Runnable",
+            "name": "toolAgent",
+            "label": "AgentExecutor",
+            "description": "Agent that uses Function Calling to pick the tools and args to call",
+            "type": "AgentExecutor | BaseChain | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 492,
+      "positionAbsolute": {
+        "x": 1601.454498004763,
+        "y": -141.19688580259697
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "retrieverTool_0",
+      "position": {
+        "x": 1004.6897901871876,
+        "y": -981.3308719340396
+      },
+      "type": "customNode",
+      "data": {
+        "id": "retrieverTool_0",
+        "label": "Retriever Tool",
+        "version": 3,
+        "name": "retrieverTool",
+        "type": "RetrieverTool",
+        "baseClasses": [
+          "RetrieverTool",
+          "DynamicTool",
+          "Tool",
+          "StructuredTool",
+          "Runnable"
+        ],
+        "category": "Tools",
+        "description": "Use a retriever as allowed tool for agent",
+        "inputParams": [
+          {
+            "label": "Retriever Name",
+            "name": "name",
+            "type": "string",
+            "placeholder": "search_state_of_union",
+            "id": "retrieverTool_0-input-name-string",
+            "display": true
+          },
+          {
+            "label": "Retriever Description",
+            "name": "description",
+            "type": "string",
+            "description": "When should agent uses to retrieve documents",
+            "rows": 3,
+            "placeholder": "Searches and returns documents regarding the state-of-the-union.",
+            "id": "retrieverTool_0-input-description-string",
+            "display": true
+          },
+          {
+            "label": "Return Source Documents",
+            "name": "returnSourceDocuments",
+            "type": "boolean",
+            "optional": true,
+            "id": "retrieverTool_0-input-returnSourceDocuments-boolean",
+            "display": true
+          },
+          {
+            "label": "Additional Metadata Filter",
+            "name": "retrieverToolMetadataFilter",
+            "type": "json",
+            "description": "Add additional metadata filter on top of the existing filter from vector store",
+            "optional": true,
+            "additionalParams": true,
+            "hint": {
+              "label": "What can you filter?",
+              "value": "Add additional filters to vector store. You can also filter with flow config, including the current \"state\":\n- `$flow.sessionId`\n- `$flow.chatId`\n- `$flow.chatflowId`\n- `$flow.input`\n- `$flow.state`\n"
+            },
+            "acceptVariable": true,
+            "id": "retrieverTool_0-input-retrieverToolMetadataFilter-json",
+            "display": true
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Retriever",
+            "name": "retriever",
+            "type": "BaseRetriever",
+            "id": "retrieverTool_0-input-retriever-BaseRetriever",
+            "display": true
+          }
+        ],
+        "inputs": {
+          "name": "policy_search",
+          "description": "Use this to answer questions about supply chain governance policy, SLAs, penalties, audit rules and disruption procedures",
+          "retriever": "{{documentStoreVS_0.data.instance}}",
+          "returnSourceDocuments": true,
+          "retrieverToolMetadataFilter": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "retrieverTool_0-output-retrieverTool-RetrieverTool|DynamicTool|Tool|StructuredTool|Runnable",
+            "name": "retrieverTool",
+            "label": "RetrieverTool",
+            "description": "Use a retriever as allowed tool for agent",
+            "type": "RetrieverTool | DynamicTool | Tool | StructuredTool | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 662,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1004.6897901871876,
+        "y": -981.3308719340396
+      }
+    },
+    {
+      "id": "chainTool_0",
+      "position": {
+        "x": 414.3670923916121,
+        "y": -734.6791131514376
+      },
+      "type": "customNode",
+      "data": {
+        "id": "chainTool_0",
+        "label": "Chain Tool",
+        "version": 1,
+        "name": "chainTool",
+        "type": "ChainTool",
+        "baseClasses": [
+          "ChainTool",
+          "DynamicTool",
+          "Tool",
+          "StructuredTool",
+          "Runnable"
+        ],
+        "category": "Tools",
+        "description": "Use a chain as allowed tool for agent",
+        "inputParams": [
+          {
+            "label": "Chain Name",
+            "name": "name",
+            "type": "string",
+            "placeholder": "state-of-union-qa",
+            "id": "chainTool_0-input-name-string",
+            "display": true
+          },
+          {
+            "label": "Chain Description",
+            "name": "description",
+            "type": "string",
+            "rows": 3,
+            "placeholder": "State of the Union QA - useful for when you need to ask questions about the most recent state of the union address.",
+            "id": "chainTool_0-input-description-string",
+            "display": true
+          },
+          {
+            "label": "Return Direct",
+            "name": "returnDirect",
+            "type": "boolean",
+            "optional": true,
+            "id": "chainTool_0-input-returnDirect-boolean",
+            "display": true
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Base Chain",
+            "name": "baseChain",
+            "type": "BaseChain",
+            "id": "chainTool_0-input-baseChain-BaseChain",
+            "display": true
+          }
+        ],
+        "inputs": {
+          "name": "supplier_data_query",
+          "description": "You are a supply chain assistant. When asked about supplier counts, \nfiltering, or aggregations from the CSV data, use the supplier_data_query \ntool and reason carefully over ALL retrieved results before giving a final \ncount. Do not guess — retrieve and count explicitly.",
+          "returnDirect": true,
+          "baseChain": "{{sqlDatabaseChain_0.data.instance}}"
+        },
+        "outputAnchors": [
+          {
+            "id": "chainTool_0-output-chainTool-ChainTool|DynamicTool|Tool|StructuredTool|Runnable",
+            "name": "chainTool",
+            "label": "ChainTool",
+            "description": "Use a chain as allowed tool for agent",
+            "type": "ChainTool | DynamicTool | Tool | StructuredTool | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 609,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 414.3670923916121,
+        "y": -734.6791131514376
+      },
+      "dragging": false
+    },
+    {
+      "id": "sqlDatabaseChain_0",
+      "position": {
+        "x": -18.738705874811586,
+        "y": -1235.3774836581167
+      },
+      "type": "customNode",
+      "data": {
+        "id": "sqlDatabaseChain_0",
+        "label": "Sql Database Chain",
+        "version": 5,
+        "name": "sqlDatabaseChain",
+        "type": "SqlDatabaseChain",
+        "baseClasses": [
+          "SqlDatabaseChain",
+          "BaseChain",
+          "Runnable"
+        ],
+        "category": "Chains",
+        "description": "Answer questions over a SQL database",
+        "inputParams": [
+          {
+            "label": "Database",
+            "name": "database",
+            "type": "options",
+            "options": [
+              {
+                "label": "SQLite",
+                "name": "sqlite"
+              },
+              {
+                "label": "PostgreSQL",
+                "name": "postgres"
+              },
+              {
+                "label": "MSSQL",
+                "name": "mssql"
+              },
+              {
+                "label": "MySQL",
+                "name": "mysql"
+              }
+            ],
+            "default": "sqlite",
+            "id": "sqlDatabaseChain_0-input-database-options",
+            "display": true
+          },
+          {
+            "label": "Connection string or file path (sqlite only)",
+            "name": "url",
+            "type": "string",
+            "placeholder": "127.0.0.1:5432/chinook",
+            "id": "sqlDatabaseChain_0-input-url-string",
+            "display": true
+          },
+          {
+            "label": "Include Tables",
+            "name": "includesTables",
+            "type": "string",
+            "description": "Tables to include for queries, separated by comma. Can only use Include Tables or Ignore Tables",
+            "placeholder": "table1, table2",
+            "additionalParams": true,
+            "optional": true,
+            "id": "sqlDatabaseChain_0-input-includesTables-string",
+            "display": true
+          },
+          {
+            "label": "Ignore Tables",
+            "name": "ignoreTables",
+            "type": "string",
+            "description": "Tables to ignore for queries, separated by comma. Can only use Ignore Tables or Include Tables",
+            "placeholder": "table1, table2",
+            "additionalParams": true,
+            "optional": true,
+            "id": "sqlDatabaseChain_0-input-ignoreTables-string",
+            "display": true
+          },
+          {
+            "label": "Sample table's rows info",
+            "name": "sampleRowsInTableInfo",
+            "type": "number",
+            "description": "Number of sample row for tables to load for info.",
+            "placeholder": "3",
+            "additionalParams": true,
+            "optional": true,
+            "id": "sqlDatabaseChain_0-input-sampleRowsInTableInfo-number",
+            "display": true
+          },
+          {
+            "label": "Top Keys",
+            "name": "topK",
+            "type": "number",
+            "description": "If you are querying for several rows of a table you can select the maximum number of results you want to get by using the \"top_k\" parameter (default is 10). This is useful for avoiding query results that exceed the prompt max length or consume tokens unnecessarily.",
+            "placeholder": "10",
+            "additionalParams": true,
+            "optional": true,
+            "id": "sqlDatabaseChain_0-input-topK-number",
+            "display": true
+          },
+          {
+            "label": "Custom Prompt",
+            "name": "customPrompt",
+            "type": "string",
+            "description": "You can provide custom prompt to the chain. This will override the existing default prompt used. See <a target=\"_blank\" href=\"https://python.langchain.com/docs/integrations/tools/sqlite#customize-prompt\">guide</a>",
+            "warning": "Prompt must include 3 input variables: {input}, {dialect}, {table_info}. You can refer to official guide from description above",
+            "rows": 4,
+            "placeholder": "Given an input question, first create a syntactically correct {dialect} query to run, then look at the results of the query and return the answer. Unless the user specifies in his question a specific number of examples he wishes to obtain, always limit your query to at most {top_k} results. You can order the results by a relevant column to return the most interesting examples in the database.\n\nNever query for all the columns from a specific table, only ask for a the few relevant columns given the question.\n\nPay attention to use only the column names that you can see in the schema description. Be careful to not query for columns that do not exist. Also, pay attention to which column is in which table.\n\nUse the following format:\n\nQuestion: \"Question here\"\nSQLQuery: \"SQL Query to run\"\nSQLResult: \"Result of the SQLQuery\"\nAnswer: \"Final answer here\"\n\nOnly use the tables listed below.\n\n{table_info}\n\nQuestion: {input}f-string",
+            "additionalParams": true,
+            "optional": true,
+            "id": "sqlDatabaseChain_0-input-customPrompt-string",
+            "display": true
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Language Model",
+            "name": "model",
+            "type": "BaseLanguageModel",
+            "id": "sqlDatabaseChain_0-input-model-BaseLanguageModel",
+            "display": true
+          },
+          {
+            "label": "Input Moderation",
+            "description": "Detect text that could generate harmful output and prevent it from being sent to the language model",
+            "name": "inputModeration",
+            "type": "Moderation",
+            "optional": true,
+            "list": true,
+            "id": "sqlDatabaseChain_0-input-inputModeration-Moderation",
+            "display": true
+          }
+        ],
+        "inputs": {
+          "model": "{{chatAnthropic_0.data.instance}}",
+          "database": "postgres",
+          "url": "postgresql://neondb_owner:npg_VljxemEq51pY@ep-withered-tooth-a27x5w00-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+          "includesTables": "suppliers",
+          "ignoreTables": "",
+          "sampleRowsInTableInfo": "20",
+          "topK": "10",
+          "customPrompt": "Given an input question, first create a syntactically correct {dialect} query to run.\n\nThe database contains the following primary table:\n\npublic.suppliers\n\nAlways use the table public.suppliers when answering supplier-related questions.\n\nImportant columns include:\nSupplier_ID,\nSupplier_Name,\nContract_Tier,\nRegion,\nCountry,\nProduct_Category,\nPO_Value_USD,\nOTD_Rate_Pct,\nDefect_Rate_Pct,\nCompliance_Score,\nSustainability_Score,\nRisk_Level,\nActive_Disruptions,\nAnnual_Volume_Units\n\nUse only columns that exist in {table_info}.\n\nNever assume the table is empty.\nAlways query the database before answering.\n\nQuestion:\n{input}",
+          "inputModeration": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "sqlDatabaseChain_0-output-sqlDatabaseChain-SqlDatabaseChain|BaseChain|Runnable",
+            "name": "sqlDatabaseChain",
+            "label": "SqlDatabaseChain",
+            "description": "Answer questions over a SQL database",
+            "type": "SqlDatabaseChain | BaseChain | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 553,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -18.738705874811586,
+        "y": -1235.3774836581167
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "chatAnthropic_0",
+      "sourceHandle": "chatAnthropic_0-output-chatAnthropic-ChatAnthropic|ChatAnthropicMessages|BaseChatModel|BaseLanguageModel|Runnable",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-model-BaseChatModel",
+      "type": "buttonedge",
+      "id": "chatAnthropic_0-chatAnthropic_0-output-chatAnthropic-ChatAnthropic|ChatAnthropicMessages|BaseChatModel|BaseLanguageModel|Runnable-toolAgent_0-toolAgent_0-input-model-BaseChatModel"
+    },
+    {
+      "source": "bufferMemory_0",
+      "sourceHandle": "bufferMemory_0-output-bufferMemory-BufferMemory|BaseChatMemory|BaseMemory",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-memory-BaseChatMemory",
+      "type": "buttonedge",
+      "id": "bufferMemory_0-bufferMemory_0-output-bufferMemory-BufferMemory|BaseChatMemory|BaseMemory-toolAgent_0-toolAgent_0-input-memory-BaseChatMemory"
+    },
+    {
+      "source": "documentStoreVS_0",
+      "sourceHandle": "documentStoreVS_0-output-retriever-BaseRetriever",
+      "target": "retrieverTool_0",
+      "targetHandle": "retrieverTool_0-input-retriever-BaseRetriever",
+      "type": "buttonedge",
+      "id": "documentStoreVS_0-documentStoreVS_0-output-retriever-BaseRetriever-retrieverTool_0-retrieverTool_0-input-retriever-BaseRetriever"
+    },
+    {
+      "source": "retrieverTool_0",
+      "sourceHandle": "retrieverTool_0-output-retrieverTool-RetrieverTool|DynamicTool|Tool|StructuredTool|Runnable",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "retrieverTool_0-retrieverTool_0-output-retrieverTool-RetrieverTool|DynamicTool|Tool|StructuredTool|Runnable-toolAgent_0-toolAgent_0-input-tools-Tool"
+    },
+    {
+      "source": "chainTool_0",
+      "sourceHandle": "chainTool_0-output-chainTool-ChainTool|DynamicTool|Tool|StructuredTool|Runnable",
+      "target": "toolAgent_0",
+      "targetHandle": "toolAgent_0-input-tools-Tool",
+      "type": "buttonedge",
+      "id": "chainTool_0-chainTool_0-output-chainTool-ChainTool|DynamicTool|Tool|StructuredTool|Runnable-toolAgent_0-toolAgent_0-input-tools-Tool"
+    },
+    {
+      "source": "chatAnthropic_0",
+      "sourceHandle": "chatAnthropic_0-output-chatAnthropic-ChatAnthropic|ChatAnthropicMessages|BaseChatModel|BaseLanguageModel|Runnable",
+      "target": "sqlDatabaseChain_0",
+      "targetHandle": "sqlDatabaseChain_0-input-model-BaseLanguageModel",
+      "type": "buttonedge",
+      "id": "chatAnthropic_0-chatAnthropic_0-output-chatAnthropic-ChatAnthropic|ChatAnthropicMessages|BaseChatModel|BaseLanguageModel|Runnable-sqlDatabaseChain_0-sqlDatabaseChain_0-input-model-BaseLanguageModel"
+    },
+    {
+      "source": "sqlDatabaseChain_0",
+      "sourceHandle": "sqlDatabaseChain_0-output-sqlDatabaseChain-SqlDatabaseChain|BaseChain|Runnable",
+      "target": "chainTool_0",
+      "targetHandle": "chainTool_0-input-baseChain-BaseChain",
+      "type": "buttonedge",
+      "id": "sqlDatabaseChain_0-sqlDatabaseChain_0-output-sqlDatabaseChain-SqlDatabaseChain|BaseChain|Runnable-chainTool_0-chainTool_0-input-baseChain-BaseChain"
+    }
+  ]
+}
